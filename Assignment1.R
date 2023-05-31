@@ -2,6 +2,7 @@ library(tidyverse)
 library(rvest)
 
 #part a
+#Scraping data from the link
 html <- read_html("https://www.moneyworks4me.com/best-index/nse-stocks/top-nifty50-companies-list/")
 M.cap <- html %>% html_elements(".company-ellipses a") %>% html_text()
 M.cap
@@ -17,11 +18,13 @@ p_by_e <- html %>% html_elements("td:nth-child(9)") %>% html_text()
 p_by_BV <- html %>% html_elements("td:nth-child(10)") %>% html_text()
 EV_by_EBITDA <- html %>% html_elements("td:nth-child(11)") %>% html_text()
 FIVEYSales_Gr <- html %>% html_elements("td:nth-child(12)") %>% html_text()
-FIVEYProfit_Gr <- html %>% html_elements("td:nth-child(13)") %>% html_text()
+FIVEYProfit_Gr <- html %>% html_elements("td:nth-child(13)") %>% html_text() 
+#creating data frame
 tabledata1 <- data.frame(M.cap,cmp,priceChange,MarkepCap,week_52_high,week_52_low,Roe,p_by_e,p_by_BV,EV_by_EBITDA,FIVEYSales_Gr,FIVEYProfit_Gr)
 
 #part b
 #hdfc life insurance
+#scraping data
 DATE <- c(0)
 for(i in 1:10)
 {
@@ -81,7 +84,7 @@ for(i in 1:1000)
   t <- t+a
 }
 ans <- t/1000
-ans
+ans #finding average
 
 #part e
 html <- read_html("https://editorial.rottentomatoes.com/guide/best-netflix-movies-to-watch-right-now/")
